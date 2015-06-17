@@ -1,11 +1,14 @@
 doctype html
 html
 	head
-		link(rel='stylesheet', href='/stylesheets/style.css')
-		link(rel='stylesheet', href='/stylesheets/style.css')
 		link(rel='stylesheet', href='/css/bootstrap.min.css')
+		link(rel="stylesheet", href='/fonts/font-awesome.min.css')
+		link(rel='stylesheet', href='/stylesheets/style.css')
 		script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
 	body
-		div(class="page-header")
-			block content
-		script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
+		include header
+		div(class="panel panel-default")
+			div(class="panel-heading")
+				h3(class="panel-title") Panel title
+			div(class="panel-body") Panel content
+			div(class="panel-footer") Panel footer
