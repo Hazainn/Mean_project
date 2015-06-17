@@ -1,0 +1,33 @@
+header
+	h1(class="h1title")= title
+	p Welcome to #{title}
+
+fieldset(class="form")
+	legend Identification
+	form(method="post" action="connexion.js")
+	label(for="pseudo") Pseudo : 
+	input(type="text" name="pseudo" id="pseudo")
+	br
+	label(for="pass") Mot de passe : 
+	input(type="password" name="pass" id="pass")
+	br
+	input(type="submit" action="/connexion")
+
+nav(class="navbar navbar-default")
+	div(class="container-fluid")
+		div(class="navbar-header")
+			button(type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="true")
+				span(class="sr-only")
+					| Toggle navigation
+				span(class="icon-bar")
+				span(class="icon-bar")
+		div(class="navbar-collapse collapse in" id="bs-example-navbar-collapse-9" aria-expanded="true")
+			ul(class="nav navbar-nav")
+				li(class="active")
+					a(href="#")
+						i(class="fa fa-home") 
+							|Home
+				li(class="active")
+					a(href="#") Link
+				li(class="active")
+					a(href="#") Link
