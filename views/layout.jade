@@ -7,8 +7,5 @@ html
 		script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
 	body
 		include header
-		div(class="panel panel-default")
-			div(class="panel-heading")
-				h3(class="panel-title") Panel title
-			div(class="panel-body") Panel content
-			div(class="panel-footer") Panel footer
+		block content
+		include footer

@@ -11,23 +11,24 @@ fieldset(class="form")
 	label(for="pass") Mot de passe : 
 	input(type="password" name="pass" id="pass")
 	br
-	input(type="submit" action="/connexion")
-
+	button(type="submit" action="/connexion") Valider
+	button(type="submit" action="/inscription") Inscription
 nav(class="navbar navbar-default")
 	div(class="container-fluid")
 		div(class="navbar-header")
-			button(type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="true")
+			button(type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false")
 				span(class="sr-only")
-					| Toggle navigation
+					|Toggle navigation
 				span(class="icon-bar")
 				span(class="icon-bar")
 		div(class="navbar-collapse collapse in" id="bs-example-navbar-collapse-9" aria-expanded="true")
 			ul(class="nav navbar-nav")
 				li(class="active")
 					a(href="#")
-						i(class="fa fa-home") 
-							|Home
+						|Acceuil
 				li(class="active")
-					a(href="#") Link
+					a(href="#") 
+						|Article
 				li(class="active")
-					a(href="#") Link
+					a(href="#") 
+						|Autre

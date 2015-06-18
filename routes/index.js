@@ -11,4 +11,8 @@ router.get('/test', function(req, res, next) {
   res.render('test', { title: title });
 });
 
+router.get('/inscription', function(req, res, next) {
+  res.render('inscription', { title: title });
+});
+
 module.exports = router;
