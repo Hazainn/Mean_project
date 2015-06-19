@@ -61,7 +61,22 @@ footer p {
 	padding: 0px;
 }
 
-.subscribe {
+.fieldsubscribe {
+	position: absolute;
+	right: 10%;
+	left: 10%;
+	background-color: #e7e7e7;
+}
+
+.fieldsubscribe .title {
+	margin:0;
+	padding: 0;
+	background-color: #e7e7e7;
+	text-align: center;
+	padding: 5px;
+}
+
+.fieldsubscribe label {
 	display: block;
 	width: 175px;
 	float: left;
