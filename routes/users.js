@@ -10,13 +10,13 @@ router.get('/', function(req, res, next) {
 /* Affiche la liste des users */
 router.get('/userlist', function(req, res) {
     var db = req.db;
-    db.collection("userlist").find().toArray(function (err, items) {
+    db.collection("user").find().toArray(function (err, items) {
         res.json(items);
     });
 });
 
-router.get('/inscription', function(req, res, next) {
-	res.render('inscription', { title: title });
+router.get('/subscribe', function(req, res, next) {
+	res.render('subscribe', { title: title });
 });
 
 module.exports = router;

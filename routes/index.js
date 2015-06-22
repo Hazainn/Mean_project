@@ -7,8 +7,4 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: title });
 });
 
-router.get('/test', function(req, res, next) {
-  res.render('test', { title: title });
-});
-
 module.exports = router;
