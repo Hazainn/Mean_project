@@ -1,6 +1,6 @@
 var express = require('express');
 var router  = express.Router();
-var title   = 'Blog Jahwess';
+var title   = 'Blog Jahwes';
 
 /* GET articles listing. */
 router.get('/', function(req, res, next) {

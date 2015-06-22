@@ -2,17 +2,6 @@ header
 	h1(class="h1title")= title
 	p Welcome to #{title}
 
-fieldset(class="form")
-	legend Identification
-	form(method="post" action="login.js")
-		label(for="email") Email : 
-		input(type="text" name="email" id="email")
-		br
-		label(for="pass") Mot de passe : 
-		input(type="password" name="pass" id="pass")
-		br
-	button(type="submit" action="/login") Valider
-	button(type="submit" action="/subscribe") Inscription
 nav(class="navbar navbar-default")
 	div(class="container-fluid")
 		div(class="navbar-header")
