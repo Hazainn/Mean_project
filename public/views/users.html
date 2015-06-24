@@ -1,0 +1,21 @@
+	
+<table class="table table-bordered table-hover">
+	<thead>
+		<th> Lastname</th>
+		<th> Firstname</th>
+		<th> email</th>
+		<th> role</th>
+		<th> Delete</th>
+		<th> Update</th>
+	</thead>
+	<tbody>
+		<tr ng-repeat="user in users">
+			<td>{{ user.Lastname }}</td>
+			<td>{{ user.Firstname }}</td>
+	        <td>{{ user.email }}</td>
+	        <td>{{ user.role.name }}</td>
+	        <td><a href="" ng-click="">X</a></td>
+	        <td><a href="" ng-click="">U</a></td>
+	    </tr>
+	</tbody>
+</table>
