@@ -20,29 +20,29 @@ app.route('/article')
 		});
 	})
 	
-app.route('/article/:title')
+app.route('/article/:id')
 	.get(function(req, res)) {
 		var db = req.db;
 		var collection = db.get('articles');
 
-		collection.find({}, {"title" : req.params.title}, function(e,docs) {
+		collection.find({}, {"_id" : req.params.id}, function(e,docs) {
 			res.json(docs);
 		});
 	}
 	.delete(function(req, res) {
 		var db = req.db;
-		var collection = db.get('articles');
+		var collection = db.get("articles");
 
-		collection.remove({'title' : req.params.title}, function(err) {
-			res.send((err == null) ? { msg: '' } : { msg: err });
+		collection.remove({"_id" : req.params.id}, function(err) {
+			res.send((err == null) ? { msg: "" } : { msg: err });
 		});
 	})
 	.put(function(req, res) {
 		var db = req.db;
-		var collection = db.get('articles');
+		var collection = db.get("articles");
 
-		collection.update(req.params.title, {$set : req.body}, function(err, result) {
-			res.send((err == null) ? { msg: '' } : { msg: err });
+		collection.update({"_id" : req.params.id}, {$set : req.body}, function(err, result) {
+			res.send((err == null) ? { msg: "" } : { msg: err });
 		});
 	});
 
