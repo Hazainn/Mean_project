@@ -3,14 +3,9 @@ var app     = express();
 var title   = 'Blog Jahwes';
 
 /* GET articles listing. */
-app.get('/', function(req, res, next) {
-  res.render(); //afficher tous les articles cette route sera appelée par la div de l'index
-});
-
 app.get('/articlelist', function(req, res) {
 	var db = req.db;
 	var collection = db.get('articles');
-
 	collection.find({}, {}, function(e,docs)
 		{
 			res.json(docs);
