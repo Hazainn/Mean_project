@@ -1,0 +1,12 @@
+ /*[NO-MERGE]*/
+extends layout
+
+block content
+	ul
+		each user in display_datas
+			li
+				p #{user.lastname} #{user.firstname}
+				each art in user.article
+						p Titre de l'article : #{art.title}
+						p #{art.content}
+

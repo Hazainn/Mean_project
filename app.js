@@ -8,7 +8,7 @@ var bodyParser   = require('body-parser');
 // require des dbs
 var mongo = require('mongodb');
 var monk  = require('monk');
-var db    = monk('localhost:27017/test2');
+var db    = monk('localhost:27017/database');
 
 // require de passport
 var passport      = require('passport');
@@ -18,6 +18,7 @@ var routes    = require('./routes/index');
 var users     = require('./routes/users');
 var articles  = require('./routes/articles');
 var login     = require('./routes/login');
+var routes2 = require('./routes/display_datas');
 
 var app = express();
 
@@ -40,6 +41,7 @@ app.use(function(req,res,next){
 });
 
 app.use('/', routes);
+app.use('/', routes2);
 app.use('/users', users);
 app.use('/articles', articles);
 app.use('/login', login);
