@@ -18,15 +18,15 @@ function table_articles() {
 	/**
 	 * on récupère le JSON de ce GET
 	 */
-	$.getJSON('/users/userlist', function(data)
+	$.getJSON('/users/articlelist', function(data)
 	{
 		/**
 		 * on ajoute des cellules et on remplit pour chaque user (d'où le foreach)
 		 */
 		$.each(data, function(){
 			tableContent += '<tr>';
-			tableContent += '<td>' + this.article.title + '</td>';
-			tableContent += '<td>' + this.article.content + '</td>';
+			tableContent += '<td>' + this.title + '</td>';
+			tableContent += '<td>' + this.content + '</td>';
 			tableContent += '<td> <a href="#" class="delete_article" rel="' + this._id + '">delete</a></td>';
 			tableContent += '</tr>';
 		});
