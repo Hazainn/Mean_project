@@ -4,7 +4,8 @@
 $(document).ready(function() {
 
 	// Populate the user table on initial page load
-	table_users();
+	//table_users();
+	test();
 });
 
 /* Redirection vers une fonction après un clique sur un bouton */
@@ -18,6 +19,21 @@ $('#userList table tbody').on('click', 'td a.update_user', update_user);
 /**
  * on remplit le tableau
  */
+function test()
+{
+	var tableContent;
+
+	tableContent = '';
+	$.getJSON('/users/userlist', function(data)
+	{
+		$.each(data, function(){
+		tableContent += '<input type="text" value=' + this.Firstname + '>';
+		tableContent += '<td> <a href="#" class="update_user" rel="' + this._id + '">update</a></td>';
+		});
+		$('#userList table tbody').html(tableContent);
+	});
+};
+
 function table_users()
 {
 	var tableContent;
@@ -109,7 +125,7 @@ function delete_user()
 	return (0);
 };
 
-/* Delete user */
+/* Update user */
 function update_user()
 {
 	event.preventDefault();
@@ -117,10 +133,7 @@ function update_user()
 	var up_user;
 
 	up_user = {
-				'Lastname': $('#up_user fieldset input#Lastname').val(),
-				'Firstname': $('#up_user fieldset input#Firstname').val(),
-				'email': $('#up_user fieldset input#email').val(),
-				'gender': $('#up_user fieldset input#gender').val()
+				'Firstname': $('input').val(),
 	}
 	$('#up_user input').each(function(index, val)
 		{
@@ -129,7 +142,7 @@ function update_user()
 		});
 	if (err_incr == 0)
 	{
-		$.ajax({type: 'UPDATE', data: up_user, url: '/users/update_user/' + $(this).attr('rel2'), dataType: 'JSON'})
+		$.ajax({type: 'UPDATE', data: up_user, url: '/users/update_user/' + $(this).attr('rel'), dataType: 'JSON'})
 			.done(function(answer) {
 				if (answer.msg != '')
 					alert(answer.msg);
@@ -137,6 +150,9 @@ function update_user()
 			});
 	}
 	else
+	{
+		alert("C'est vide");
 		return (-1);
+	}
 	return (0);
 };
