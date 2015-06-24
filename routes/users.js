@@ -1,26 +1,8 @@
 var express = require('express');
-var app     = express();
+var app	 = express();
 var title   = 'Blog Jahwes';
 
-<<<<<<< HEAD
-/* GET users listing. */
-app.get('/', function(req, res, next) {
-=======
-/* GET users listing.
-router.get('/', function(req, res, next) {
->>>>>>> ajout et suppressions
-  res.send('respond with a resource'); 
-});*/
-
-/* Affiche la liste des users
-router.get('/userlist', function(req, res) {
-	var db = req.db;
-	db.collection("original").find().toArray(function (err, items) {
-		res.json(items);
-	});
-});*/
-
-router.get('/userlist', function(req, res) {
+app.get('/userlist', function(req, res) {
 	var db = req.db;
 	var collection = db.get('original');
 
@@ -30,7 +12,7 @@ router.get('/userlist', function(req, res) {
 		});
 });
 
-router.post('/add_user', function(req, res) {
+app.post('/add_user', function(req, res) {
 	var db = req.db;
 	var collection = db.get('original');
 
@@ -40,7 +22,7 @@ router.post('/add_user', function(req, res) {
 		});
 });
 
-router.delete('/delete_user/:id', function(req, res) {
+app.delete('/delete_user/:id', function(req, res) {
 	var db = req.db;
 	var collection = db.get('original');
 	var user_id = req.params.id;
@@ -51,7 +33,7 @@ router.delete('/delete_user/:id', function(req, res) {
 		});
 });
 
-router.put('/update_user/:id', function(req, res) {
+app.put('/update_user/:id', function(req, res) {
 	var db = req.db;
 	var collection = db.get('original');
 
