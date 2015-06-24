@@ -31,4 +31,6 @@ myBlog.controller('users', function($scope, $http) {
         .error(function (data, status) {
             console.log(data);
         });
+
+    
 });
