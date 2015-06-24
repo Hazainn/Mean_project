@@ -3,8 +3,8 @@ var router  = express.Router();
 var title   = 'Blog Jahwes';
 
 /* GET home page. */
-router.get('/test', function(req, res, next) {
-  res.render('test', { title: title });
+router.get('/', function(req, res, next) {
+  res.render('index', { title: title });
 });
 
 router.get('/test', function(req, res, next) {

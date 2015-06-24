@@ -19,7 +19,7 @@ function table_articles() {
 	/**
 	 * on récupère le JSON de ce GET
 	 */
-	$.getJSON('/articles/articlelist', function(data)
+	$.getJSON('/articles/article', function(data)
 	{
 		/**
 		 * on ajoute des cellules et on remplit pour chaque user (d'où le foreach)

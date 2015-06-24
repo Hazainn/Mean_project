@@ -5,7 +5,7 @@ $(document).ready(function() {
 
 	// Populate the user table on initial page load
 	//table_users();
-	test();
+
 });
 
 /* Redirection vers une fonction après un clique sur un bouton */
@@ -24,7 +24,7 @@ function test()
 	var tableContent;
 
 	tableContent = '';
-	$.getJSON('/users/userlist', function(data)
+	$.getJSON('/users/user', function(data)
 	{
 		$.each(data, function(){
 		tableContent += '<input type="text" value=' + this.Firstname + '>';
@@ -42,7 +42,7 @@ function table_users()
 	/**
 	 * on récupère le JSON de ce GET
 	 */
-	$.getJSON('/users/userlist', function(data)
+	$.getJSON('/users/user', function(data)
 	{
 		/**
 		 * on ajoute des cellules et on remplit pour chaque user (d'où le foreach)

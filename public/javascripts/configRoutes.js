@@ -24,7 +24,7 @@ myBlog.config(function($routeProvider) {
 myBlog.controller('users', function($scope, $http) {
 	$scope.username = 'World';
 
-	$http.get(basePath + '/users/userlist')
+	$http.get(basePath + '/users/user')
         .success(function (data) {
             $scope.users = data;
         })

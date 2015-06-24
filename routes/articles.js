@@ -21,14 +21,16 @@ app.route('/article')
 	})
 	
 app.route('/article/:id')
-	.get(function(req, res)) {
+	.get(function(req, res) {
 		var db = req.db;
 		var collection = db.get('articles');
 
 		collection.find({}, {"_id" : req.params.id}, function(e,docs) {
 			res.json(docs);
-		});
-	}
+			}
+		);
+		}
+	)
 	.delete(function(req, res) {
 		var db = req.db;
 		var collection = db.get("articles");
@@ -44,6 +46,7 @@ app.route('/article/:id')
 		collection.update({"_id" : req.params.id}, {$set : req.body}, function(err, result) {
 			res.send((err == null) ? { msg: "" } : { msg: err });
 		});
-	});
+		}
+	);
 
 module.exports = app;
