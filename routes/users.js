@@ -1,22 +1,22 @@
 var express = require('express');
-var router  = express.Router();
-var title   = 'Blog Jahwess';
+var app     = express();
+var title   = 'Blog Jahwes';
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+app.get('/', function(req, res, next) {
   res.send('respond with a resource'); 
 });
 
 /* Affiche la liste des users */
-router.get('/userlist', function(req, res) {
+app.get('/userlist', function(req, res) {
     var db = req.db;
-    db.collection("userlist").find().toArray(function (err, items) {
+    db.collection("user").find().toArray(function (err, items) {
         res.json(items);
     });
 });
 
-router.get('/inscription', function(req, res, next) {
-	res.render('inscription', { title: title });
+app.get('/subscribe', function(req, res, next) {
+	res.render('subscribe', { title: title });
 });
 
-module.exports = router;
+module.exports = app;

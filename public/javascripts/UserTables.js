@@ -24,25 +24,21 @@ function populateTable() {
 
     var tableContent = '';
 
-    /**
-     * on récupère le JSON de ce GET
-     */
+    
+    // on récupère le JSON de ce GET
     $.getJSON( '/users/userlist', function( data ) {
 
-        /**
-         * on ajoute des cellules et on remplit pour chaque user (d'où le foreach)
-         */
+        
+        // on ajoute des cellules et on remplit pour chaque user (d'où le foreach)
         $.each(data, function(){
             tableContent += '<tr>';
             tableContent += '<td>' + this.firstname + ' ' + this.lastname + '</td>';
-            tableContent += '<td>' + this.mail + '</td>';
-            tableContent += '<td>' + this.Sexe + '</td>';
+            tableContent += '<td>' + this.email + '</td>';
+            tableContent += '<td>' + this.gender + '</td>';
             tableContent += '</tr>';
         });
 
-        /**
-         * et on envoie tout à la view
-         */
+        // et on envoie tout à la view
         $('#userList table tbody').html(tableContent);
     });
 };

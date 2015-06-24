@@ -10,9 +10,14 @@ var mongo = require('mongodb');
 var monk  = require('monk');
 var db    = monk('localhost:27017/test2');
 
+// require de passport
+var passport      = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 var routes    = require('./routes/index');
 var users     = require('./routes/users');
 var articles  = require('./routes/articles');
+var login     = require('./routes/login');
 
 var app = express();
 
@@ -37,6 +42,7 @@ app.use(function(req,res,next){
 app.use('/', routes);
 app.use('/users', users);
 app.use('/articles', articles);
+app.use('/login', login);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
