@@ -9,6 +9,7 @@ $(document).ready(function() {
 
 /* Redirection vers une fonction après un clique sur un bouton */
 $('#post_art').on('click', add_article);
+$('#articleList table tbody').on('click', 'td a.delete_article', delete_article);
 
 function table_articles() {
 
@@ -18,7 +19,7 @@ function table_articles() {
 	/**
 	 * on récupère le JSON de ce GET
 	 */
-	$.getJSON('/users/articlelist', function(data)
+	$.getJSON('/articles/articlelist', function(data)
 	{
 		/**
 		 * on ajoute des cellules et on remplit pour chaque user (d'où le foreach)
@@ -54,14 +55,15 @@ function add_article(event)
 	if (err_incr == 0)
 		{
 			var new_article = {
-				'title': $('#add_article input#title').val(),
-				'content': $('#add_article textarea#content').val()
+				'title': $('#add_article fieldset input#title').val(),
+				'content': $('#add_article fielset textarea#content').val()
 			}
-			$.ajax({type: 'POST', data: new_article, url: '/users/add_user', dataType: 'JSON'})
+			$.ajax({type: 'POST', data: new_article, url: '/articles/add_article', dataType: 'JSON'})
 				.done(function(answer) {
 				alert("Article posted");
-				$('#add_article input').val('');
-				$('#add_article textarea').val('');
+				$('#add_article fieldset input').val('');
+				$('#add_article fieldset textarea').val('');
+				table_articles();
 			});
 		}
 	else
@@ -81,7 +83,7 @@ function delete_article()
 	ok = confirm("Etes-vous sûr de vouloir supprimer cet article ?");
 	if (ok == true)
 	{
-		$.ajax({type: 'DELETE', url: '/users/delete_user/' + $(this).attr('rel')})
+		$.ajax({type: 'DELETE', url: '/articles/delete_article/' + $(this).attr('rel')})
 			.done(function(answer) {
 				if (answer.msg != '')
 					alert(answer.msg);

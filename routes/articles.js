@@ -1,51 +1,39 @@
 var express = require('express');
-var app     = express();
+var app  = express();
 var title   = 'Blog Jahwes';
 
-/* GET articles listing. */
-app.get('/', function(req, res, next) {
-  res.render(); //afficher tous les articles cette route sera appelée par la div de l'index
-});
+app.route('/article')
+	.get(function(req, res) {
+		var db = req.db;
+		var collection = db.get('articles');
 
-app.get('/articlelist', function(req, res) {
-	var db = req.db;
-	var collection = db.get('articles');
-
-	collection.find({}, {}, function(e,docs)
-		{
+		collection.find({}, {}, function(e,docs) {
 			res.json(docs);
 		});
-});
+	})
+	.post(function(req, res) {
+		var db = req.db;
+		var collection = db.get('articles');
 
-app.post('/add_article', function(req, res) {
-	var db = req.db;
-	var collection = db.get('articles');
-
-	collection.insert(req.body, function(err, result)
-		{
+		collection.insert(req.body, function(err, result) {
 			res.send((err == null) ? { msg: '' } : { msg: err });
 		});
-});
+	})
+	.delete(function(req, res) {
+		var db = req.db;
+		var collection = db.get('articles');
 
-app.delete('/delete_article/:id', function(req, res) {
-	var db = req.db;
-	var collection = db.get('articles');
-	var user_id = req.params.id;
-
-	collection.remove({ '_id' : user_id }, function(err)
-		{
+		collection.remove({'_id' : req.params.id}, function(err) {
 			res.send((err == null) ? { msg: '' } : { msg: err });
 		});
-});
+	})
+	.put(function(req, res) {
+		var db = req.db;
+		var collection = db.get('articles');
 
-app.put('/update_article/:id', function(req, res) {
-	var db = req.db;
-	var collection = db.get('articles');
-
-	collection.update(req.params.id, {$set : req.body}, function(err, result)
-		{
+		collection.update(req.params.id, {$set : req.body}, function(err, result) {
 			res.send((err == null) ? { msg: '' } : { msg: err });
 		});
-});
+	});
 
 module.exports = app;
