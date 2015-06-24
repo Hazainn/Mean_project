@@ -11,10 +11,6 @@ myBlog.config(function($routeProvider) {
 			templateUrl: '/views/articles.html',
 			//controller:	'dashboardCrtl'
 		})
-		.when('/inscription',{
-			templateUrl: '/views/inscription.html',
-			//controller:	'dashboardCrtl'
-		})
 		.when('/users',{
 			templateUrl: '/views/users.html',
 			controller:	'users'
