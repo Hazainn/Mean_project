@@ -22,7 +22,10 @@ myBlog.config(function($routeProvider) {
 });
 
 myBlog.controller('users', function($scope, $http) {
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 	$http.get(basePath + '/users/user')
         .success(function (data) {
             $scope.users = data;
