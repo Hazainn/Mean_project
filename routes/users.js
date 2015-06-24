@@ -14,7 +14,6 @@ app.route('/user')
 	.post(function(req, res) {
 		var db = req.db;
 		var collection = db.get('users');
-
 		collection.insert(req.body, function(err, result) {
 			res.send((err == null) ? { msg: '' } : { msg: err });
 		});
@@ -22,7 +21,6 @@ app.route('/user')
 	.delete(function(req, res) {
 		var db = req.db;
 		var collection = db.get('users');
-
 		collection.remove({'_id' : req.params.id}, function(err) {
 			res.send((err == null) ? { msg: '' } : { msg: err });
 		});
@@ -30,7 +28,6 @@ app.route('/user')
 	.put(function(req, res) {
 		var db = req.db;
 		var collection = db.get('users');
-
 		collection.update({'_id' : req.params.id}, {$set : req.body}, function(err, result) {
 			res.send((err == null) ? { msg: '' } : { msg: err });
 		});
