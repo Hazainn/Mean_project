@@ -14,9 +14,11 @@ app.route('/user')
 	.post(function(req, res) {
 		var db = req.db;
 		var collection = db.get('users');
-		collection.insert(req.body, function(err, result) {
+
+		console.log(req.body);
+		/*collection.insert(req.body, function(err, result) {
 			res.send((err == null) ? { msg: '' } : { msg: err });
-		});
+		});*/
 	})
 
 app.route('/user/:email')

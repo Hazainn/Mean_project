@@ -17,15 +17,12 @@ myBlog.config(function($routeProvider) {
 		})
 		.when('/inscription',{
 			templateUrl: '/views/inscription.html',
-			//controller:	'dashboardCrtl'
+			controller:	'dashboardCrtl'
 		})
 });
 
 myBlog.controller('users', function($scope, $http) {
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 	$http.get(basePath + '/users/user')
         .success(function (data) {
             $scope.users = data;
@@ -35,4 +32,12 @@ myBlog.controller('users', function($scope, $http) {
         });
 
     
+});
+
+app.controller("otherCtrl", function ($scope) {
+    $scope.searchAll = "";
+
+    $scope.clearSearch = function () {
+        $scope.searchAll = "";
+    };
 });
