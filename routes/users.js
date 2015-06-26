@@ -1,9 +1,5 @@
 var express = require('express');
-<<<<<<< HEAD
-var app  	= express();
-=======
 var app     = express();
->>>>>>> refs/stash
 var title   = 'Blog Jahwes';
 
 app.route('/user')
