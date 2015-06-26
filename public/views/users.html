@@ -9,11 +9,11 @@
 		<th> Update</th>
 	</thead>
 	<tbody>
-		<tr ng-repeat="user in users">
+		<tr ng-repeat="user in users | orderBy : role['role1']">
 			<td>{{ user.Lastname }}</td>
 			<td>{{ user.Firstname }}</td>
 	        <td>{{ user.email }}</td>
-	        <td>{{ user.role.name }}</td>
+	        <td>{{ user.role["role1"] }}</td>
 	        <td><a href="" ng-click="">X</a></td>
 	        <td><a href="" ng-click="">U</a></td>
 	    </tr>

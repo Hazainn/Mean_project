@@ -1,21 +1,78 @@
-<fieldset class="fieldsubscribe">
-	<legend class="title"> INSCRIPTION : </legend>
-		<form method="post">
-			<label> Firstname :</label>
-			<input type="firstname" placeholder="firstname">
-			<br />
-			<label> Lastname :</label>
-			<input type="Lastname" placeholder="lastname">
-			<br />
-			<label> Email address :</label>
-			<input type="email" placeholder="Email">
-			<br />
-			<label> Gender :</label>
-			<input type="Lastname" placeholder="lastname">
-			<br />
-			<label> Password :</label>
-			<input type="password" placeholder="Password">
-			<br />
-			<button type="submit" class="btn"> Submit</button>
-		</form>
+<fieldset>
+	<form class="form-horizontal" method="post" action="#/inscription">
+		<fieldset class="fieldsubscribe" ng-controller="otherCtrl">
+			<!-- Form Name -->
+			<legend>Inscription</legend>
+			
+			<!-- Prepended text-->
+			<div class="form-group" style="width: 1200px;">
+				<label class="col-md-4 control-label" for="firstname"></label>
+				<div class="col-md-6">
+					<div class="input-group">
+						<span class="input-group-addon">Firstname*</span>
+						<input id="firstname" name="firstname" class="form-control" placeholder="firstname" type="text" required="" data-ng-model="searchAll">
+					</div>
+				</div>
+			</div>
+			
+			<!-- Prepended text-->
+			<div class="form-group" style="width: 1200px;">
+				<label class="col-md-4 control-label" for="lastname"></label>
+				<div class="col-md-6">
+					<div class="input-group">
+						<span class="input-group-addon">Lastname* :</span>
+						<input id="lastname" name="lastname" class="form-control" placeholder="lastname" type="text" required=""data-ng-model="searchAll">			
+					</div>
+				</div>
+			</div>
+
+			<!-- Prepended text-->
+			<div class="form-group" style="width: 1200px;">
+				<label class="col-md-4 control-label" for="email"></label>
+				<div class="col-md-6">
+					<div class="input-group">
+							<span class="input-group-addon">Email* :</span>
+							<input id="email" name="email" class="form-control" placeholder="email@email.com" type="text" required="" data-ng-model="searchAll">
+					</div>
+				</div>
+			</div>
+
+			<!-- Prepended text-->
+			<div class="form-group" style="width: 1200px;">
+				<label class="col-md-4 control-label" for="password"></label>
+				<div class="col-md-6">
+					<div class="input-group">
+						<span class="input-group-addon">Password* :</span>
+						<input id="password" name="password" class="form-control" placeholder="password" type="text" required="" data-ng-model="searchAll">
+					</div>
+				</div>
+			</div>
+
+			<!-- Multiple Checkboxes -->
+			<div class="form-group" style="width: 1200px;">
+				<label class="col-md-4 control-label" for="gender"></label>
+				<div class="col-md-4">
+					<div class="checkbox">
+						<label for="gender-0">
+							<input type="checkbox" name="gender" id="gender-0" value="W">Female
+						</label>
+					</div>
+					<div class="checkbox">
+						<label for="gender-1">
+							<input type="checkbox" name="gender" id="gender-1" value="M">Male
+						</label>
+					</div>
+				</div>
+			</div>
+
+			<!-- Button (Double) -->
+			<div class="form-group" style="width: 1200px;">
+				<label class="col-md-4 control-label" for="subscribe"></label>
+				<div class="col-md-8">
+					<button id="subscribe" name="subscribe" class="btn btn-inverse" data-ng-click="clearSearch()">Subscribe</button>
+					<button id="clear" name="clear" class="btn btn-default" ng-click="input = ">Clear</button>
+				</div>
+			</div>
+		</fieldset>
+	</form>
 </fieldset>

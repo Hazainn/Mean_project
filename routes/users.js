@@ -14,6 +14,7 @@ app.route('/user')
 	.post(function(req, res) {
 		var db         = req.db;
 		var collection = db.get('users');
+
 		collection.insert(req.body, function(err, result) {
 			res.send((null === err) ? { msg: '' } : { msg: err });
 		});

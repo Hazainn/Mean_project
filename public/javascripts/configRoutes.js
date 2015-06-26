@@ -17,7 +17,7 @@ myBlog.config(function($routeProvider) {
 		})
 		.when('/inscription',{
 			templateUrl: '/views/inscription.html',
-			//controller:	'dashboardCrtl'
+			controller:	'dashboardCrtl'
 		})
 });
 
@@ -32,4 +32,12 @@ myBlog.controller('users', function($scope, $http) {
         });
 
     
+});
+
+app.controller("otherCtrl", function ($scope) {
+    $scope.searchAll = "";
+
+    $scope.clearSearch = function () {
+        $scope.searchAll = "";
+    };
 });

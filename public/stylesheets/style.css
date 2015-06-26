@@ -26,7 +26,8 @@ header {
 }
 
 #content {
-	padding-bottom:100px;
+	padding-bottom:150px;
+	bottom: 150px;
 }
 
 .footer {
@@ -51,6 +52,7 @@ header {
 	top:0;
 	padding:5px;
 	margin: 10px 40px 50px 20px;
+	background-color: #e7e7e7;
 }
 
 .form label {
@@ -75,24 +77,18 @@ header {
 				/*///// Formulaire d'inscription \\\\\*/
 
 .fieldsubscribe {
-	position: absolute;
 	right: 10%;
 	left: 10%;
 	background-color: #e7e7e7;
 }
 
-.fieldsubscribe .title {
-	margin:0;
+.fieldsubscribe legend {
+	margin:10px;
 	padding: 0;
 	background-color: #e7e7e7;
 	text-align: center;
 	padding: 5px;
-}
-
-.fieldsubscribe label {
-	display: block;
-	width: 175px;
-	float: left;
+	border-bottom:2px solid #eee
 }
 
 .content {
