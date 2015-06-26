@@ -18,7 +18,6 @@ var routes    = require('./routes/index');
 var users     = require('./routes/users');
 var articles  = require('./routes/articles');
 var login     = require('./routes/login');
-var routes2 = require('./routes/display_datas');
 
 var app = express();
 
@@ -41,7 +40,6 @@ app.use(function(req,res,next){
 });
 
 app.use('/', routes);
-app.use('/', routes2);
 app.use('/users', users);
 app.use('/articles', articles);
 app.use('/login', login);

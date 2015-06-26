@@ -1,5 +1,5 @@
 var express = require('express');
-var app  = express();
+var app  	= express();
 var title   = 'Blog Jahwes';
 
 app.route('/user')
@@ -15,10 +15,9 @@ app.route('/user')
 		var db = req.db;
 		var collection = db.get('users');
 
-		console.log(req.body);
-		/*collection.insert(req.body, function(err, result) {
+		collection.insert(req.body, function(err, result) {
 			res.send((err == null) ? { msg: '' } : { msg: err });
-		});*/
+		});
 	})
 
 app.route('/user/:email')
