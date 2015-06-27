@@ -11,8 +11,8 @@ var monk  = require('monk');
 var db    = monk('localhost:27017/database');
 
 // require de passport
-var passport      = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+var passport    = require('passport'),
+  LocalStrategy = require('passport-local').Strategy;
 
 var routes    = require('./routes/index');
 var users     = require('./routes/users');
