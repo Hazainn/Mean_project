@@ -95,3 +95,10 @@ header {
 	height: auto;
 	width: 100%;
 }
+
+				/*/////	Mise en page pour les articles \\\\\*/
+
+.articles {
+	width: 80%;
+	margin-left: 10%;
+}

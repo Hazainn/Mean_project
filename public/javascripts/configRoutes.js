@@ -6,11 +6,11 @@ myBlog.config(function($routeProvider) {
 	$routeProvider
 		.when('/', {
 			templateUrl: '/views/index.html',
-			//controller:	'dashboardCrtl'
+			controller:	'article'
 		})
 		.when('/articles',{
 			templateUrl: '/views/articles.html',
-			//controller:	'dashboardCrtl'
+			controller:	'article'
 		})
 		.when('/users',{
 			templateUrl: '/views/users.html',
@@ -26,6 +26,8 @@ myBlog.config(function($routeProvider) {
 });
 
 myBlog.controller('users', function($scope, $http, $window) {
+
+    /* Controller pour les users */
 
 	$http.get(basePath + '/users')
         .success(function (data) {
@@ -88,3 +90,16 @@ myBlog.directive('repeatClick', ['$parse', function($parse) {
   };
 }]);
 
+    /* Controller pour les articles */
+
+myBlog.controller('article', function($scope, $http) {
+
+    $http.get(basePath + '/articles')
+        .success(function (data) {
+            $scope.articles = data;
+            console.log(data);
+        })
+        .error(function (data, status) {
+            console.log(data);
+        });
+});
