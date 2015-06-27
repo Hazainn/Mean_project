@@ -1,5 +1,4 @@
-	
-<table class="table table-bordered table-hover">
+<table class="table table-bordered table-hover" ng-controller="users">
 	<thead>
 		<th> Lastname</th>
 		<th> Firstname</th>
@@ -9,13 +8,13 @@
 		<th> Update</th>
 	</thead>
 	<tbody>
-		<tr ng-repeat="user in users | orderBy : role['role1']">
+		<tr ng-repeat="user in users">
 			<td>{{ user.Lastname }}</td>
 			<td>{{ user.Firstname }}</td>
 	        <td>{{ user.email }}</td>
 	        <td>{{ user.role["role1"] }}</td>
-	        <td><a href="" ng-click="">X</a></td>
-	        <td><a href="" ng-click="">U</a></td>
+	        <td><a href="" repeat-click="deleteUser(user, $scope)">X</a></td>
+	        <td><a href="" >U</a></td>
 	    </tr>
 	</tbody>
 </table>
