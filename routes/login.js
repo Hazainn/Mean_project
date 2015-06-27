@@ -31,6 +31,7 @@ passport.use(new LocalStrategy(
   }
 ));
 
+
 app.post('/', passport.authenticate('local'), function(req, res) {
         res.redirect('/users/')
     }
