@@ -11,9 +11,9 @@
 		<tr ng-repeat="user in users">
 			<td>{{ user.Lastname }}</td>
 			<td>{{ user.Firstname }}</td>
-	        <td ng-model="email">{{ user.email }}</td>
+	        <td>{{ user.email }}</td>
 	        <td>{{ user.role["role1"] }}</td>
-	        <td><a href="" ng-click="deleteUser(:email)">X</a></td>
+	        <td><a href="" repeat-click="deleteUser(user, $scope)">X</a></td>
 	        <td><a href="" >U</a></td>
 	    </tr>
 	</tbody>

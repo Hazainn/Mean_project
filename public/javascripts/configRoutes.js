@@ -27,7 +27,7 @@ myBlog.config(function($routeProvider) {
 
 myBlog.controller('users', function($scope, $http) {
 
-	$http.get(basePath + '/users/user')
+	$http.get(basePath + '/users')
         .success(function (data) {
             $scope.users = data;
         })
@@ -37,6 +37,7 @@ myBlog.controller('users', function($scope, $http) {
 
         /* ng-click pour l'ajout d'un user */
     $scope.addUser = function(){
+
     	$http.post( basePath + '/users/user',
            {
              "Firstname":$scope.firstname,
@@ -50,16 +51,16 @@ myBlog.controller('users', function($scope, $http) {
             })
     		.success(function(data){
             console.log("User created.");
-	        $location.path('#/')
           	})
           	.error(function(data){
             console.log('Unable to create user ...');
 	        });
 	};
 
-		/* ng-click pour la suppression d'un user */
-	$scope.deleteUser = function(email){
-    	$http.delete( basePath + '/users/' + email)
+		/* repeatClick pour la suppression d'un user */
+	$scope.deleteUser = function(user, $reapetScope){
+
+    	$http.delete( basePath + '/users/user/' + user.email)
     		.success(function(data){
             console.log("User deleted.");
           	})
@@ -68,3 +69,20 @@ myBlog.controller('users', function($scope, $http) {
 	        });
 	};
 });
+
+myBlog.directive('repeatClick', ['$parse', function($parse) {
+  return {
+    restrict: 'A',
+    compile: function($element, attr) {
+      var fn = $parse(attr['repeatClick']);
+      return function(scope, element, attr) {
+        element.on('click', function(event) {
+          scope.$apply(function() {
+            fn(scope, {$event: event, $scope: scope});
+          });
+        });
+      };
+    }
+  };
+}]);
+

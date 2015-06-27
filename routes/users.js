@@ -2,7 +2,7 @@ var express = require('express');
 var app     = express();
 var title   = 'Blog Jahwes';
 
-app.route('/user')
+app.route('/')
 	.get(function(req, res) {
 		var db         = req.db;
 		var collection = db.get('users');
@@ -11,6 +11,8 @@ app.route('/user')
 			res.json(docs);
 		});
 	})
+
+app.route('/user')
 	.post(function(req, res) {
 		var db         = req.db;
 		var collection = db.get('users');
