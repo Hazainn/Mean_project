@@ -1,4 +1,4 @@
-var myBlog = angular.module('Blog',['ngRoute']);
+var myBlog = angular.module('Blog',['ngRoute', 'ui.tinymce']);
 
 var basePath = 'http://localhost:3000'
 
@@ -12,6 +12,10 @@ myBlog.config(function($routeProvider) {
 			templateUrl: '/views/articles.html',
 			controller:	'article'
 		})
+    .when('/articles/article',{
+      templateUrl: '/views/addArticle.html',
+      controller: 'article'
+    })
 		.when('/users',{
 			templateUrl: '/views/users.html',
 			controller:	'users'
@@ -102,4 +106,56 @@ myBlog.controller('article', function($scope, $http) {
         .error(function (data, status) {
             console.log(data);
         });
+
+    $scope.tinymceOptions = {
+        onChange: function(e) {
+          // put logic here for keypress and cut/paste changes
+        },
+        format: false,
+        inline: false,
+        plugins : 'advlist autolink link image lists charmap print preview',
+        skin: 'lightgray',
+        theme : 'modern'
+    };
+
+    $scope.genHtml = function(template){ 
+        var linkFunction = $compile(template);
+        var result = linkFunction($scope);
+        $scope.$apply();
+    
+    };
+        /* ng-click pour ajouter un article*/
+    $scope.addArticle = function(){
+
+        $http.post( basePath + '/articles/article',
+           {
+             "title"    :$scope.title,
+             "content"  :$scope.tinymceModel
+            })
+            .success(function(data){
+            console.log("User created.");
+            console.log($scope.tinymceModel);
+            console.log($scope.title);
+            })
+            .error(function(data){
+            console.log('Unable to create user ...');
+            });
+    };
+
 });
+
+
+myBlog.controller('genHtml', function() {
+
+};
+/*,
+           {
+             "Firstname":$scope.firstname,
+             "Lastname" :$scope.lastname,
+             "email"    :$scope.email,
+             "password" :$scope.password,
+             "gender"   :$scope.gender,
+             "role"     : {
+                "role1": "user"
+             }
+            }*/
