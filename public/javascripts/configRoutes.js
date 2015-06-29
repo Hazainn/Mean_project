@@ -16,16 +16,16 @@ myBlog.config(function($routeProvider) {
 			templateUrl: '/views/users.html',
 			controller:	'users'
 		})
-		.when('/inscription',{
-			templateUrl: '/views/inscription.html'
+		.when('/subscribe',{
+			templateUrl: '/views/subscribe.html'
 		})
 		.when('/addUser',{
-			templateUrl: '/views/inscription.html',
+			templateUrl: '/views/subscribe.html',
 			controller:	'users'
 		})
 });
 
-myBlog.controller('users', function($scope, $http) {
+myBlog.controller('users', function($scope, $http, $window) {
 
 	$http.get(basePath + '/users')
         .success(function (data) {
@@ -50,22 +50,24 @@ myBlog.controller('users', function($scope, $http) {
              }
             })
     		.success(function(data){
-            console.log("User created.");
+            $window.alert("User created.");
+            $window.location.href = '#/users/user/' + $scope.email;
           	})
           	.error(function(data){
-            console.log('Unable to create user ...');
+            $window.alert('Unable to create user ...');
+            $window.location.href = '#/subscribe';
 	        });
 	};
 
 		/* repeatClick pour la suppression d'un user */
-	$scope.deleteUser = function(user, $reapetScope){
+	$scope.deleteUser = function(user, $repeatScope){
 
     	$http.delete( basePath + '/users/user/' + user.email)
     		.success(function(data){
-            console.log("User deleted.");
+            $window.alert("User deleted.");
           	})
           	.error(function(data){
-            console.log('Unable to delete user ...');
+            $window.alert('Unable to delete user ...');
 	        });
 	};
 });

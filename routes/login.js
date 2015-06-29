@@ -15,28 +15,25 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(user, done) {
     done(null, user);
 });
-passport.use(new LocalStrategy(function(email, password, done) {
-  process.nextTick(function() {
-    // Auth Check Logic
-  });
-}));
 
-app.get('/', function(req, res) {
-  res.sendfile('views/login.html');
-});
+passport.use(new LocalStrategy(
+  function(email, password, done) {
+    User.findOne({ email: email }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect email.' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
 
-app.post('/', passport.authenticate('local', {
-        successRedirect: '/loginSuccess',
-        failureRedirect: '/loginFailure'
-    })
+app.post('/', passport.authenticate('local'), function(req, res) {
+        res.redirect('/users/')
+    }
 );
- 
-app.get('/loginFailure', function(req, res, next) {
-  res.send('Failed to authenticate');
-});
- 
-app.get('/loginSuccess', function(req, res, next) {
-  res.send('Successfully authenticated');
-});
 
 module.exports = app;
