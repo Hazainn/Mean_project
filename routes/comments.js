@@ -17,7 +17,7 @@ app.route('/comment/:id')
 		var db         = req.db;
 		var collection = db.get("articles");
 
-		collection.remove({"_id" : req.params.id}, {$unset : req.body}), function(err) {
+		collection.remove(({"_id" : req.params.id}, {$unset : req.body}), function(err) {
 			res.send((null === err) ? { msg: "" } : { msg: err });
 		});
 	})
