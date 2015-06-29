@@ -1,0 +1,16 @@
+<div class="articles" ng-controller="article">
+	<div class='panel panel-default' ng-repeat="article in articles">
+		<div class='panel-heading'>
+			<h3 class='panel-title'> 
+				{{ article.title }}
+			</h3>
+		</div>
+		<div class='panel-body'>
+			{{ article.content }}
+		</div>
+		<div class='panel-footer'>
+			<p class='article-footer'>Write by <i>{{ article.Lastname }} {{ article.Firstname }}</i>,
+			the <i>{{ article.dates.created | date: 'yyyy-MM-dd HH:mm'}}</i></p>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,28 @@
+<div class="articles" ng-controller="article">
+	<form class="form-horizontal" method="post">
+		<fieldset>
+			
+			<!-- Form Name -->
+			<legend>Form Name</legend>
+			
+			<!-- Text input-->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="Title">Title</label>  
+				<div class="col-md-4">
+					<input id="Title" ng-model="title" type="text" placeholder="Your title her" class="form-control input-md">    
+				</div>
+			</div>
+			
+			<!-- tinymce : -->
+			<textarea ui-tinymce="tinymceOptions" ng-model="tinymceModel" ></textarea>
+			
+			<!-- Button -->
+			<div class="form-group" style="margin-top: 20px; margin-left:30px;">
+				<label class="col-md-4 control-label" for="send"></label>
+				<div class="col-md-4">
+				    <button id="send" name="send" class="btn btn-inverse" ng-click="addArticle()">Post my article</button>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+</div>
