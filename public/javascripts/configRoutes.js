@@ -144,11 +144,11 @@ myBlog.controller('article', function($scope, $http) {
 
 });
 
-
+/*
 myBlog.controller('genHtml', function() {
 
 };
-/*,
+
            {
              "Firstname":$scope.firstname,
              "Lastname" :$scope.lastname,

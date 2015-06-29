@@ -17,7 +17,13 @@ app.route('/comment/:id')
 		var db         = req.db;
 		var collection = db.get("articles");
 
+<<<<<<< Updated upstream
 		collection.remove(({"_id" : req.params.id}, {$unset : req.body}), function(err) {
+=======
+		collection.remove(
+			{"_id" : req.params.id}, 
+			{$unset : req.body}, function(err) {
+>>>>>>> Stashed changes
 			res.send((null === err) ? { msg: "" } : { msg: err });
 		});
 	})
