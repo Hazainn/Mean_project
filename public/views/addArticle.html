@@ -7,14 +7,16 @@
 			
 			<!-- Text input-->
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="Title">Title</label>  
+				<label class="col-md-4 control-label" for="Title">Title*</label>  
 				<div class="col-md-4">
-					<input id="Title" ng-model="title" type="text" placeholder="Your title her" class="form-control input-md">    
+					<input id="Title" required ng-model="title" type="text" placeholder="Your title her" class="form-control input-md">    
 				</div>
 			</div>
 			
-			<!-- tinymce : -->
-			<textarea ui-tinymce="tinymceOptions" ng-model="tinymceModel" ></textarea>
+			<div class="form-group">
+  				<label for="comment">Article*:</label>
+				<textarea ng-model="content" required class="form-control" rows="5" id="comment"></textarea>
+			</div>
 			
 			<!-- Button -->
 			<div class="form-group" style="margin-top: 20px; margin-left:30px;">

@@ -1,6 +1,6 @@
-var myBlog = angular.module('Blog',['ngRoute', 'ui.tinymce']);
+var myBlog = angular.module('Blog',['ngRoute']);
 
-var basePath = 'http://localhost:3000'
+var basePath = 'http://localhost:3000';
 
 myBlog.config(function($routeProvider) {
 	$routeProvider
@@ -23,10 +23,6 @@ myBlog.config(function($routeProvider) {
 		.when('/subscribe',{
 			templateUrl: '/views/subscribe.html'
 		})
-		.when('/addUser',{
-			templateUrl: '/views/subscribe.html',
-			controller:	'users'
-		})
 });
 
 myBlog.controller('users', function($scope, $http, $window) {
@@ -43,26 +39,28 @@ myBlog.controller('users', function($scope, $http, $window) {
 
         /* ng-click pour l'ajout d'un user */
     $scope.addUser = function(){
+        if ($scope.firstname && $scope.lastname && $scope.email && $scope.password && $scope.gender) {
+    	   $http.post( basePath + '/users/user',
+               {
+                 "Firstname":$scope.firstname,
+                 "Lastname"	:$scope.lastname,
+                 "email"	:$scope.email,
+                 "password"	:$scope.password,
+                 "gender"	:$scope.gender,
+                 "role"		: {
+                 	"role1": "user"
+                 }
+                })
+    	   	.success(function(data){
+                $window.alert("User created.");
+                $window.location.href = '#/users/user/' + $scope.email;
+              	})
+              	.error(function(data){
+                $window.alert('Unable to create user ...');
+                $window.location.href = '#/subscribe';
+	           });
+        }
 
-    	$http.post( basePath + '/users/user',
-           {
-             "Firstname":$scope.firstname,
-             "Lastname"	:$scope.lastname,
-             "email"	:$scope.email,
-             "password"	:$scope.password,
-             "gender"	:$scope.gender,
-             "role"		: {
-             	"role1": "user"
-             }
-            })
-    		.success(function(data){
-            $window.alert("User created.");
-            $window.location.href = '#/users/user/' + $scope.email;
-          	})
-          	.error(function(data){
-            $window.alert('Unable to create user ...');
-            $window.location.href = '#/subscribe';
-	        });
 	};
 
 		/* repeatClick pour la suppression d'un user */
@@ -96,66 +94,47 @@ myBlog.directive('repeatClick', ['$parse', function($parse) {
 
     /* Controller pour les articles */
 
-myBlog.controller('article', function($scope, $http) {
+myBlog.controller('article', function($scope, $http, $window) {
 
     $http.get(basePath + '/articles')
         .success(function (data) {
             $scope.articles = data;
-            console.log(data);
         })
         .error(function (data, status) {
             console.log(data);
         });
 
-    $scope.tinymceOptions = {
-        onChange: function(e) {
-          // put logic here for keypress and cut/paste changes
-        },
-        format: false,
-        inline: false,
-        plugins : 'advlist autolink link image lists charmap print preview',
-        skin: 'lightgray',
-        theme : 'modern'
-    };
-
-    $scope.genHtml = function(template){ 
-        var linkFunction = $compile(template);
-        var result = linkFunction($scope);
-        $scope.$apply();
-    
-    };
         /* ng-click pour ajouter un article*/
     $scope.addArticle = function(){
 
-        $http.post( basePath + '/articles/article',
-           {
-             "title"    :$scope.title,
-             "content"  :$scope.tinymceModel
-            })
+        $scope.date = new Date();
+        if ($scope.title && $scope.content) {
+            $http.post( basePath + '/articles/article',
+               {
+                    "id_user"   : "?",
+                    "firstname" :"Aoubid",
+                    "lastname"  :"Hassan", 
+                    "title"     :$scope.title,
+                    "content"   :$scope.content,
+                    "nb_com"    : 0,
+                    "dates"     : {
+                       
+                       "created": $scope.date
+                    
+                    },
+                    "comment"   : [{
+    
+                    }]
+                })
             .success(function(data){
-            console.log("User created.");
-            console.log($scope.tinymceModel);
-            console.log($scope.title);
+                $window.alert("article created.");
             })
             .error(function(data){
-            console.log('Unable to create user ...');
+                $window.alert('Unable to create article ...');
             });
-    };
-
-});
-
-/*
-myBlog.controller('genHtml', function() {
-
+        }
+        else {
+           $window.alert('Unable to create article... Missing argument'); 
+        }
 };
-
-           {
-             "Firstname":$scope.firstname,
-             "Lastname" :$scope.lastname,
-             "email"    :$scope.email,
-             "password" :$scope.password,
-             "gender"   :$scope.gender,
-             "role"     : {
-                "role1": "user"
-             }
-            }*/
+});
