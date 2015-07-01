@@ -1,5 +1,5 @@
 <div class="articles" ng-controller="article">
-	<div class='panel panel-default' ng-repeat="article in articles">
+	<div class='panel panel-default' ng-repeat="article in articles | limitTo:3">
 		<div class='panel-heading'>
 			<h3 class='panel-title'> 
 				{{ article.title }}

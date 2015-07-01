@@ -39,6 +39,8 @@ myBlog.controller('article', function($scope, $http, $window) {
                 })
             .success(function(data){
                 $window.alert("article created.");
+                $window.location.href = '#/articles';
+                $scope.$apply();
             })
             .error(function(data){
                 $window.alert('Unable to create article ...');
@@ -54,9 +56,10 @@ myBlog.controller('article', function($scope, $http, $window) {
 		.success(function(){
             window.alert('Article deleted ...');
             $window.location.href = '#/articles';
+            $scope.$apply();
 		})
 		.error(function(){
-
+            window.alert('Not deleted ...');
 		});
 	}
 });
