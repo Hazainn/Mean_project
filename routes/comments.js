@@ -2,7 +2,7 @@ var express = require('express');
 var app     = express();
 var title   = 'Blog Jahwes';
 
-app.route('/comment')
+app.route('/')
 	.get(function(req, res) {
 		var db         = req.db;
 		var collection = db.get('articles');
@@ -16,13 +16,8 @@ app.route('/comment/:id')
 	.delete(function(req, res) {
 		var db         = req.db;
 		var collection = db.get("articles");
-	
-		collection.remove(
-			{"_id" : req.params.id}, 
-			{$unset : req.body}, function(err) {
-		collection.remove(
-			{"_id" : req.params.id}, 
-			{$unset : req.body}, function(err) {
+
+		collection.remove({"_id" : req.params.id}, {$unset : req.body}, function(err) {
 			res.send((null === err) ? { msg: "" } : { msg: err });
 		});
 	})
