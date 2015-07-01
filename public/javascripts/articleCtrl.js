@@ -47,5 +47,16 @@ myBlog.controller('article', function($scope, $http, $window) {
         else {
            $window.alert('Unable to create article... Missing argument'); 
         }
-	};
+	}
+
+	$scope.delArticle = function(article, $repeatScope){
+		$http.delete(basePath + '/articles/article/' + article._id)
+		.success(function(){
+            window.alert('Article deleted ...');
+            $window.location.href = '#/articles';
+		})
+		.error(function(){
+
+		});
+	}
 });

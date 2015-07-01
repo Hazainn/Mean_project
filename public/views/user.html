@@ -8,7 +8,7 @@
     <div class="form-group">
         <label class="col-md-4 control-label" for="firstname">Firstname :</label>  
         <div class="col-md-5">
-            <p class="lead">{{ users.Firstname }}</p>
+            <p class="lead">{{ user.Firstname }}</p>
         </div>
     </div>
     
@@ -16,7 +16,7 @@
     <div class="form-group">
     <label class="col-md-4 control-label" for="lastname">Lastname :</label>  
         <div class="col-md-5">
-            <p class="lead">{{ users.Lastname }}</p>
+            <p class="lead">{{ user.Lastname }}</p>
         </div>
     </div>
     
@@ -24,7 +24,7 @@
     <div class="form-group">
         <label class="col-md-4 control-label" for="email">Email :</label>  
         <div class="col-md-5">
-            <p class="lead">{{ users.email }}</p>
+            <p class="lead">{{ user.email }}</p>
         </div>
     </div>
     
@@ -32,7 +32,7 @@
     <div class="form-group">
         <label class="col-md-4 control-label" for="oldPassword">Old Password :</label>
         <div class="col-md-5">
-            <input id="oldPassword" name="oldPassword" type="password" placeholder="your old password" class="form-control input-md">
+            <input id="oldPassword" name="oldPassword" ng-model="oldpwd" type="password" placeholder="your old password" class="form-control input-md">
         </div>
     </div>
     
@@ -40,7 +40,7 @@
     <div class="form-group">
         <label class="col-md-4 control-label" for="newPassword">New Password :</label>
         <div class="col-md-5">
-            <input id="newPassword" name="newPassword" type="password" placeholder="your new password" class="form-control input-md">  
+            <input id="newPassword" name="newPassword" ng-model="newpwd" type="password" placeholder="your new password" class="form-control input-md">  
         </div>
     </div>
 
@@ -48,7 +48,7 @@
     <div class="form-group" style='margin-left=""'>
         <label class="col-md-4 control-label" for="subscribe"></label>
         <div class="col-md-8">
-            <button id="subscribe" class="btn btn-inverse" ng-click="putUser()">Subscribe</button>
+            <button id="subscribe" class="btn btn-inverse" ng-click="putUserPassword()">Subscribe</button>
             <button id="clear" class="btn btn-default" >Clear</button>
         </div>
     </div>
