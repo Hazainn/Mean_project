@@ -6,13 +6,13 @@ var title   = 'Blog Jahwes';
 var passport      = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-passport.use(new LocalStrategy(
-  function() {
-    var db   = req.db;
-    var user = db.get("users");
-
-    console.log("coucou");
-  }
+passport.use(new LocalStrategy({
+        usernameField: 'email',
+        passwordField: 'password'
+    },
+    function(username, password, done) {
+        console.log("coucou");
+    }
 ));
 
 passport.serializeUser(function(user, done) {
@@ -25,8 +25,8 @@ passport.deserializeUser(function(user, done) {
 app.post('/', 
     passport.authenticate('local',
         {
-            successRedirect: '/',
-            failureRedirect: '/login',
+            successRedirect: '/users',
+            failureRedirect: '/',
             failureFlash: true
         }
     )
