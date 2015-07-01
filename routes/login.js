@@ -7,13 +7,11 @@ var passport      = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 passport.use(new LocalStrategy(
-  function(email, password, done) {
-    var db = req.db;
-    var User = db.get("users");
+  function() {
+    var db   = req.db;
+    var user = db.get("users");
 
-    User.findOne({}, {email: email}, function(err, user) {
-        console.log("coucou");
-    });
+    console.log("coucou");
   }
 ));
 
@@ -24,9 +22,13 @@ passport.deserializeUser(function(user, done) {
     done(null, user);
 });
 
-app.post('/', function(req, res) {
-        res.redirect('/users/')
-        console.log(req.params.email);
+app.post('/', 
+    function(req, res) {
+        passport.authenticate('local'),
+        function(req, res) {
+            console.log("coucou je suis ici")
+            res.redirect('/users/user/' + req.body.email);
+        }
     }
 );
 
