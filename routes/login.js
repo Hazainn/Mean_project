@@ -23,13 +23,13 @@ passport.deserializeUser(function(user, done) {
 });
 
 app.post('/', 
-    function(req, res) {
-        passport.authenticate('local'),
-        function(req, res) {
-            console.log("coucou je suis ici")
-            res.redirect('/users/user/' + req.body.email);
+    passport.authenticate('local',
+        {
+            successRedirect: '/',
+            failureRedirect: '/login',
+            failureFlash: true
         }
-    }
+    )
 );
 
 module.exports = app;
