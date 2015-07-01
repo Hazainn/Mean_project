@@ -26,14 +26,14 @@ myBlog.config(function($routeProvider) {
 		})
     .when('/users/user/:email',{
       templateUrl: '/views/user.html',
-      controller: 'users'
+      controller: 'putUser'
     })
 		.when('/subscribe',{
 			templateUrl: '/views/subscribe.html'
 		})
     .otherwise({
         redirectTo: '/'
-      });
+    });
 });
 
 myBlog.directive('repeatClick', ['$parse', function($parse) {

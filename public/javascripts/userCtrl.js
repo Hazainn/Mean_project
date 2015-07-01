@@ -7,7 +7,8 @@ var admin     = false;
 myBlog.controller('users', function($scope, $http, $window) {
 
     $scope.admin = admin;
-    /* Controlleur pour les users */
+        
+        /* Controlleur pour les users */
 	$http.get(basePath + '/users')
         .success(function (data) {
             $scope.users = data;
@@ -41,32 +42,41 @@ myBlog.controller('users', function($scope, $http, $window) {
         }
     }
 
-    $scope.showUser = function(){
-        $window.location.href = '#/users/user/' + userLogin;
-        $http.get(basePath + '/users/user/' + userLogin)
-            .success(function (data) {
-                if ("M" === data[0].gender) {
-                    data[0].gender = "Male"; 
-                }else if ("F" === data[0].gender){
-                    data[0].gender = "Female";
-                }
-                $scope.user= data[0];
-                $scope.coucou = "coucou";
-                console.log($scope.user);
-            })
-            .error(function (data, status) {
-                console.log(data);
-            });
+		/* repeatClick pour la suppression d'un user */
+	$scope.deleteUser = function(user, $repeatScope){
+
+    	$http.delete( basePath + '/users/user/' + user.email)
+    		.success(function(data){
+            $window.alert("User deleted.");
+          	})
+          	.error(function(data){
+            $window.alert('Unable to delete user ...');
+	        });
 	   }
-    $scope.showUser();
+});
+
+
+myBlog.controller('putUser', function($scope, $http, $window) {
+    
+    $http.get(basePath + '/users/user/' + userLogin)
+        .success(function (data) {
+            if ("M" === data[0].gender) {
+                data[0].gender = "Male"; 
+            }else if ("F" === data[0].gender){
+                data[0].gender = "Female";
+            }
+            $scope.user= data[0];
+        })
+        .error(function (data, status) {
+            console.log(data);
+        });
+    $window.location.href = '#/users/user/' + userLogin;
 
     $scope.putUserPassword = function(){
-        console.log($scope.user.password);
         if ($scope.oldpwd === $scope.user.password){
             $window.location.href = '#/users/user/' + userLogin;
             
             $scope.user.password = $scope.newpwd;
-            console.log($scope.user.password);
             $http.put( basePath + '/users/user/' + userLogin,
                {
                  "Firstname":$scope.user.firstname,
@@ -90,16 +100,4 @@ myBlog.controller('users', function($scope, $http, $window) {
             $window.alert("Wrong old password");
         }
     }
-		/* repeatClick pour la suppression d'un user */
-	$scope.deleteUser = function(user, $repeatScope){
-
-    	$http.delete( basePath + '/users/user/' + user.email)
-    		.success(function(data){
-            $window.alert("User deleted.");
-          	})
-          	.error(function(data){
-            $window.alert('Unable to delete user ...');
-	        });
-	   }
 });
-
