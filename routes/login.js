@@ -6,9 +6,17 @@ var title   = 'Blog Jahwes';
 var passport      = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-//config pour passport
-app.use(passport.initialize());
-app.use(passport.session());
+passport.use(new LocalStrategy(
+  function(email, password, done) {
+    var db = req.db;
+    var User = db.get("users");
+
+    User.findOne({}, {email: email}, function(err, user) {
+        console.log("coucou");
+    });
+  }
+));
+
 passport.serializeUser(function(user, done) {
     done(null, user);
 });
@@ -16,24 +24,9 @@ passport.deserializeUser(function(user, done) {
     done(null, user);
 });
 
-passport.use(new LocalStrategy(
-  function(email, password, done) {
-    User.findOne({ email: email }, function(err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect email.' });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
-    });
-  }
-));
-
-
-app.post('/', passport.authenticate('local'), function(req, res) {
+app.post('/', function(req, res) {
         res.redirect('/users/')
+        console.log(req.params.email);
     }
 );
 

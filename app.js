@@ -1,4 +1,5 @@
 var express      = require('express');
+var app          = express();
 var path         = require('path');
 var favicon      = require('serve-favicon');
 var logger       = require('morgan');
@@ -11,16 +12,17 @@ var monk  = require('monk');
 var db    = monk('localhost:27017/database');
 
 // require de passport
-var passport    = require('passport'),
-  LocalStrategy = require('passport-local').Strategy;
+var passport    = require('passport');
+
+//config pour passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 var routes    = require('./routes/index');
 var users     = require('./routes/users');
 var articles  = require('./routes/articles');
 var comments  = require('./routes/comments');
 var login     = require('./routes/login');
-
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
