@@ -1,6 +1,6 @@
-var express = require('express');
-var app     = express();
-var title   = 'Blog Jahwes';
+var express 	= require('express');
+var app     	= express();
+var title   	= 'Blog Jahwes';
 
 app.route('/')
 	.get(function(req, res) {
